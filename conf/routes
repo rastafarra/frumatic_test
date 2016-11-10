@@ -1,0 +1,7 @@
+GET /index controllers.App.index
+
+GET /amount controllers.App.amount(account : String)
+
+GET /add controllers.App.add(account : String, summ : Int)
+
+GET /move controllers.App.move(from : String, to : String, summ : Int)
