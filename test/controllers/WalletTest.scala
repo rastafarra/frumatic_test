@@ -17,34 +17,34 @@ class WalletTest extends PlaySpec with OneAppPerSuite {
 
   "Amount" should {
     "not found by defaul" in {
-      contentAsString(route(app, FakeRequest(GET, s"/amount?account=$acc1")).get) mustBe "NotFound"
-      contentAsString(route(app, FakeRequest(GET, s"/amount?account=$acc2")).get) mustBe "NotFound"
+      contentAsString(route(app, FakeRequest(GET, s"/accounts/$acc1")).get) mustBe "NotFound"
+      contentAsString(route(app, FakeRequest(GET, s"/accounts/$acc2")).get) mustBe "NotFound"
     }
   }
 
   "Add" should {
     "added value" in {
-      contentAsString(route(app, FakeRequest(GET, s"/add?account=$acc1&summ=100")).get) mustBe "Amount(100)"
-      contentAsString(route(app, FakeRequest(GET, s"/add?account=$acc2&summ=100")).get) mustBe "Amount(100)"
+      contentAsString(route(app, FakeRequest(POST, s"/add?account=$acc1&summ=100")).get) mustBe "Amount(100)"
+      contentAsString(route(app, FakeRequest(POST, s"/add?account=$acc2&summ=100")).get) mustBe "Amount(100)"
     }
   }
 
   "Move ok" should {
     "move" in {
-      contentAsString(route(app, FakeRequest(GET, s"/move?from=$acc1&to=$acc2&summ=50")).get) mustBe "Amount"
+      contentAsString(route(app, FakeRequest(POST, s"/move?from=$acc1&to=$acc2&summ=50")).get) mustBe "Amount"
     }
   }
 
   "Move with NotEnoughMoney" should {
     "move error" in {
-      contentAsString(route(app, FakeRequest(GET, s"/move?from=$acc1&to=$acc2&summ=150")).get) mustBe "NotEnoughMoney"
+      contentAsString(route(app, FakeRequest(POST, s"/move?from=$acc1&to=$acc2&summ=150")).get) mustBe "NotEnoughMoney"
     }
   }
 
   "Amount" should {
     "get answer" in {
-      contentAsString(route(app, FakeRequest(GET, s"/amount?account=$acc1")).get) mustBe "Amount(50)"
-      contentAsString(route(app, FakeRequest(GET, s"/amount?account=$acc2")).get) mustBe "Amount(150)"
+      contentAsString(route(app, FakeRequest(GET, s"/accounts/$acc1")).get) mustBe "Amount(50)"
+      contentAsString(route(app, FakeRequest(GET, s"/accounts/$acc2")).get) mustBe "Amount(150)"
     }
   }
 }

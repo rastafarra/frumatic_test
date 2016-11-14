@@ -1,8 +1,8 @@
 GET /index controllers.Wallet.index
 GET / controllers.Wallet.index
 
-GET /amount controllers.Wallet.amount(account : String)
+GET /accounts/$account<\w{1,20}> controllers.Wallet.amount(account : String)
 
-GET /add controllers.Wallet.add(account : String, summ : Int)
+POST /add controllers.Wallet.add(account : String, summ : Int)
 
-GET /move controllers.Wallet.move(from : String, to : String, summ : Int)
+POST /move controllers.Wallet.move(from : String, to : String, summ : Int)
