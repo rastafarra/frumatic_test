@@ -4,7 +4,7 @@ import org.scalatestplus.play._
 import play.api.test._
 import play.api.test.Helpers._
 
-class WalletTest extends PlaySpec with OneAppPerSuite {
+class WalletControllerTest extends PlaySpec with OneAppPerSuite {
 
   val acc1 = "111"
   val acc2 = "222"
