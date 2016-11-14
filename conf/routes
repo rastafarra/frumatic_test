@@ -1,7 +1,8 @@
-GET /index controllers.App.index
+GET /index controllers.Wallet.index
+GET / controllers.Wallet.index
 
-GET /amount controllers.App.amount(account : String)
+GET /amount controllers.Wallet.amount(account : String)
 
-GET /add controllers.App.add(account : String, summ : Int)
+GET /add controllers.Wallet.add(account : String, summ : Int)
 
-GET /move controllers.App.move(from : String, to : String, summ : Int)
+GET /move controllers.Wallet.move(from : String, to : String, summ : Int)

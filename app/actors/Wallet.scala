@@ -63,7 +63,7 @@ class Wallet extends Actor {
 
   def moveHandler(from: String, to: String, summ: Int) = {
     (wlt.get(from), wlt.get(to)) match {
-      case (Some(sFrom), Some(sTo)) => sFrom > summ match {
+      case (Some(sFrom), Some(sTo)) => sFrom < summ match {
           case true => NotEnoughMoney
           case false => {
             wlt.put(from, sFrom - summ)
