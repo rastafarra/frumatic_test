@@ -28,7 +28,7 @@ class WalletController @Inject()(system: ActorSystem) extends Controller {
 
   def amount (account : String) = Action.async {
     (wallet ? GetAmount (account)).map(resp => resp match {
-      case Amount (i) => Ok (resp)
+      case Amount (i) => Ok (resp.toString)
       case _ => BadRequest (resp.toString)
     })
   }
@@ -36,14 +36,14 @@ class WalletController @Inject()(system: ActorSystem) extends Controller {
 
 
   def add (account : String, summ : Int) = Action.async {
-    (wallet ? Add (account, summ)).map(resp => Ok (resp))
+    (wallet ? Add (account, summ)).map(resp => Ok (resp.toString))
   }
 
 
 
   def move (from : String, to : String, summ : Int) = Action.async {
     (wallet ? Move (from, to, summ)).map(resp => resp match {
-      case Amount => Ok (resp)
+      case Amount => Ok (resp.toString)
       case NotEnoughMoney => BadRequest (resp.toString)
     })
   }
